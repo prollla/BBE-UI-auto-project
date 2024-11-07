@@ -1,7 +1,7 @@
 import pytest
 from selenium import webdriver
-
 from bbe.pages.cart_page import CartPage
+from bbe.pages.order_page import OrderPage
 
 
 @pytest.fixture(scope="class")
@@ -23,3 +23,8 @@ def base_url():
 @pytest.fixture(scope="class")
 def cart_page(init_driver):
     return CartPage(init_driver)
+
+
+@pytest.fixture(scope="class")
+def order_page(init_driver):
+    return OrderPage(init_driver)
