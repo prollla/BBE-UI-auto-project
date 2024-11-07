@@ -22,3 +22,6 @@ class BasePage:
 
     def open_page(self, url=''):
         self.driver.get(self.base_url + url)
+
+    def find(self, locator):
+        return self.driver.find_element(*locator)
