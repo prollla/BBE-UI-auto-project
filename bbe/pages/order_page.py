@@ -14,8 +14,16 @@ class OrderPage(BasePage):
     def address_locator(self):
         return By.ID, "shipping_address_full_locality_name"
 
+    def address_error_locator(self):
+        return (By.XPATH, "//input[@id='shipping_address_full_locality_name']"
+                          "/following-sibling::div[@class='co-input-notice co-notice--danger']")
+
     def name_locator(self):
         return By.ID, "client_name"
+
+    def name_error_locator(self):
+        return By.XPATH, ("//input[@id='client_name']"
+                          "/following-sibling::div[@class='co-input-notice co-notice--danger']")
 
     def accept_order_button(self):
         return By.ID, "create_order"
@@ -38,3 +46,17 @@ class OrderPage(BasePage):
     def click_order_button(self):
         WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.accept_order_button()))
         self.click(self.accept_order_button())
+
+    def clear_name(self):
+        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.name_locator()))
+        self.find(self.name_locator()).clear()
+
+    def clear_address(self):
+        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(self.address_locator()))
+        self.find(self.address_locator()).clear()
+
+    def find_address_error(self):
+        return self.find(self.address_error_locator())
+
+    def find_name_error(self):
+        return self.find(self.name_error_locator())

@@ -28,6 +28,9 @@ class CartPage(BasePage):
     def make_order_locator(self):
         return By.XPATH, "//button[text()='Оформить заказ']"
 
+    def coupon_element_locator(self):
+        return By.NAME, "cart[coupon]"
+
     def delete_product_from_cart(self):
         self.click(self.delete_product_locator())
 
@@ -47,3 +50,6 @@ class CartPage(BasePage):
 
     def click_make_order(self):
         self.click(self.make_order_locator())
+
+    def check_coupon_place_holder(self):
+        self.check_placeholder(self.coupon_element_locator(), "Промокод")

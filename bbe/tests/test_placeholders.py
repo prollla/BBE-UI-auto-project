@@ -5,9 +5,9 @@ from bbe.pages.start_page import StartPage
 
 
 @pytest.mark.usefixtures("init_driver")
-class TestAddToCart:
-    @allure.title("Тест на добавление товара в корзину")
-    def test_add_product_to_cart(self, cart_page):
+class TestPlaceholders:
+    @allure.title("Тест на соотвествие плейсхолдера поля Промокод макету")
+    def test_check_coupon_placeholder(self, cart_page):
 
         with allure.step('Инициализация страницы'):
             start_page = StartPage(self.driver)
@@ -26,3 +26,9 @@ class TestAddToCart:
 
         with allure.step('Проверка, что товар добавлен в корзину'):
             assert start_page.is_product_added_to_cart(), "Product was not added to cart"
+
+        with allure.step('Переход на страницу Корзина'):
+            start_page.cart_move()
+
+        with allure.step('Проверка плейсхолдера поля Промокод'):
+            cart_page.check_coupon_place_holder()

@@ -47,3 +47,11 @@ class BasePage:
             EC.presence_of_element_located(locator))
         self.find(locator).clear()
         time.sleep(1)
+
+    def check_placeholder(self, locator, placeholder_text):
+        WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(locator))
+        placeholder = self.find(locator).get_attribute("placeholder")
+        if placeholder == placeholder_text:
+            pass
+        else:
+            pytest.fail(f"Плейсхолдер не соотвествует макету")

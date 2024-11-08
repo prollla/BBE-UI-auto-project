@@ -4,10 +4,10 @@ import pytest
 from bbe.pages.start_page import StartPage
 
 
-@pytest.mark.usefixtures("init_driver", "base_url")
+@pytest.mark.usefixtures("init_driver")
 class TestDeleteFromCart:
     @allure.title("Тест на удаление товара из корзины")
-    def test_delete_from_cart(self, base_url, cart_page):
+    def test_delete_from_cart(self, cart_page):
 
         with allure.step('Инициализация страницы'):
             start_page = StartPage(self.driver)

@@ -16,11 +16,6 @@ def init_driver(request):
 
 
 @pytest.fixture(scope="class")
-def base_url():
-    return 'https://demo.yookassa.ru/'
-
-
-@pytest.fixture(scope="class")
 def cart_page(init_driver):
     return CartPage(init_driver)
 
